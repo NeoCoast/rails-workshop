@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user_array = (1..20).to_a.map do |i| 
+    User.create! email: "user_#{i}@email.com", username: "User ##{i}"
+end
+
+user_array.each do |user|
+    users_to_follow = (user_array - [user]).sample(3)
+    user.followees.push(*users_to_follow)
+end
+
+
